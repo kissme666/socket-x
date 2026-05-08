@@ -7,11 +7,11 @@ LDFLAGS := -s -w
 define compile
 	CGO_ENABLED=0 GOOS=$(1) GOARCH=$(2) \
 		go build -ldflags "$(LDFLAGS)" \
-		-o $(BUILD)/$(APP)-$(1)-$(2)$(if $(filter windows,$(1)),.exe,) ./...
+		-o $(BUILD)/$(APP)-$(1)-$(2)$(if $(filter windows,$(1)),.exe,) ./cmd/socketx
 endef
 
 build:
-	CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o $(BUILD)/$(APP) ./...
+	CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o $(BUILD)/$(APP) ./cmd/socketx
 
 build-all:
 	$(call compile,linux,amd64)

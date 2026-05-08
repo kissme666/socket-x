@@ -4,3 +4,7 @@ build/
 *.env.*
 
 *.log
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,12 @@
+server:
+  addr: ":8888"
+  max_conn: 1000
+
+log:
+  filename: "logs/socketx.log"
+  level: "info"       # debug / info / warn / error
+  format: "json"      # json / text
+  max_size: 100       # MB，单文件最大体积
+  max_backups: 7      # 最多保留文件数
+  max_age: 30         # 天，最多保留天数
+  compress: true
