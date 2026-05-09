@@ -5,8 +5,9 @@ import (
 )
 
 type Config struct {
-	Server ServerConfig `mapstructure:"server"`
-	Log    LogConfig    `mapstructure:"log"`
+	Server      ServerConfig `mapstructure:"server"`
+	Log         LogConfig    `mapstructure:"log"`
+	SocksConfig SocksConfig  `mapstructure:"socks"`
 }
 
 type ServerConfig struct {
@@ -31,6 +32,12 @@ type LogConfig struct {
 	Compress bool `mapstructure:"compress"`
 }
 
+type SocksConfig struct {
+	Addr        string `mapstructure:"addr"`
+	Password    string `mapstructure:"password"`
+	SimpleSocks bool   `mapstructure:"simple_socks"`
+}
+
 func Load(path string) (*Config, error) {
 	v := viper.New()
 	v.SetConfigFile(path)
@@ -44,6 +51,9 @@ func Load(path string) (*Config, error) {
 	v.SetDefault("log.max_backups", 7)
 	v.SetDefault("log.max_age", 30)
 	v.SetDefault("log.compress", true)
+	v.SetDefault("socks.addr", ":1080")
+	v.SetDefault("socks.password", "")
+	v.SetDefault("socks.simple_socks", false)
 
 	if err := v.ReadInConfig(); err != nil {
 		return nil, err

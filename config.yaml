@@ -10,3 +10,8 @@ log:
   max_backups: 7      # 最多保留文件数
   max_age: 30         # 天，最多保留天数
   compress: true
+
+socks:
+  addr: ":1090"
+  password: ""          # 空则不启用认证
+  simple_socks: false   # true 则使用简化协议，不走标准 socks5 握手
